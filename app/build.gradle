@@ -11,7 +11,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -48,31 +48,32 @@ kotlin {
 }
 
 dependencies {
-    commonMainImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutines_version"
-    commonMainImplementation "io.ktor:ktor-client-core:$ktor_version"
-    commonMainImplementation "io.ktor:ktor-client-json:$ktor_version"
-    commonMainImplementation "org.kodein.di:kodein-di-erased:$kodein_version"
+    commonMainImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${rootProject.ext.coroutinesVersion}"
+    commonMainImplementation "io.ktor:ktor-client-core:${rootProject.ext.ktorVersion}"
+    commonMainImplementation "io.ktor:ktor-client-json:${rootProject.ext.ktorVersion}"
+    commonMainImplementation "org.kodein.di:kodein-di-core:${rootProject.ext.kodeinVersion}"
+    commonMainImplementation "org.kodein.di:kodein-di-erased:${rootProject.ext.kodeinVersion}"
 
-    androidMainImplementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidMainImplementation 'com.android.support:appcompat-v7:28.0.0'
-    androidMainImplementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    androidMainImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-    androidMainImplementation "io.ktor:ktor-client-android:$ktor_version"
-    androidMainImplementation "io.ktor:ktor-client-json-jvm:$ktor_version"
-    androidMainImplementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
+    androidMainImplementation fileTree(dir: "libs", include: ["*.jar"])
+    androidMainImplementation 'androidx.appcompat:appcompat:1.0.2'
+    androidMainImplementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    androidMainImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1"
+    androidMainImplementation "io.ktor:ktor-client-android:${rootProject.ext.ktorVersion}"
+    androidMainImplementation "io.ktor:ktor-client-json-jvm:${rootProject.ext.ktorVersion}"
+    androidMainImplementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${rootProject.ext.serializationVersion}"
 
-    androidMainImplementation "com.github.bumptech.glide:glide:$glide_version"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    androidMainImplementation "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${rootProject.ext.glideVersion}"
 
-    iosMainImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutines_version"
-    iosMainImplementation "io.ktor:ktor-client-ios:$ktor_version"
-    iosMainImplementation "io.ktor:ktor-client-json-native:$ktor_version"
-    iosMainImplementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization_version"
+    iosMainImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${rootProject.ext.coroutinesVersion}"
+    iosMainImplementation "io.ktor:ktor-client-ios:${rootProject.ext.ktorVersion}"
+    iosMainImplementation "io.ktor:ktor-client-json-native:${rootProject.ext.ktorVersion}"
+    iosMainImplementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${rootProject.ext.serializationVersion}"
 
-    commonTestImplementation 'org.jetbrains.kotlin:kotlin-test'
-    commonTestImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+    commonTestImplementation "org.jetbrains.kotlin:kotlin-test"
+    commonTestImplementation "org.jetbrains.kotlin:kotlin-test-junit"
 
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
 }
 
 // This task attaches native framework built from ios module to Xcode project

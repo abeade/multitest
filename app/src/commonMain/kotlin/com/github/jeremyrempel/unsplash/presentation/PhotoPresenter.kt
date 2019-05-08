@@ -12,7 +12,7 @@ class PhotoPresenter(
     val view: PhotoView
 ) : CoroutinePresenter(uiContext, view), PhotoActions {
 
-    val api: PhotoApi by kodein.instance("Api")
+    val api: PhotoApi by kodein.instance()
 
     override fun onRequestData() = updateData()
 

@@ -7,7 +7,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.features.ExpectSuccess
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
-import kotlinx.serialization.json.JSON
+import kotlinx.serialization.json.Json
 import org.kodein.di.Kodein
 import org.kodein.di.erased.bind
 import org.kodein.di.erased.instance
@@ -20,7 +20,7 @@ val kodein = Kodein {
         HttpClient {
 
             install(JsonFeature) {
-                serializer = KotlinxSerializer(JSON.nonstrict).apply {
+                serializer = KotlinxSerializer(Json.nonstrict).apply {
                     setMapper(PhotoResponse::class, PhotoResponse.serializer())
                 }
 
@@ -29,7 +29,7 @@ val kodein = Kodein {
         }
 
     }
-    bind<PhotoApi>("Api") with provider {
+    bind<PhotoApi>() with provider {
 
         val client by kodein.instance<HttpClient>()
         val clientId by kodein.instance<String>("ClientId")
