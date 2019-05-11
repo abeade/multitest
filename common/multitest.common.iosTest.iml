@@ -4,9 +4,9 @@
     <facet type="kotlin-language" name="Kotlin">
       <configuration version="3" platform="Native " useProjectSettings="false" isTestModule="true" externalProjectId=":common">
         <sourceSets>
+          <sourceSet>multitest.common.commonTest</sourceSet>
           <sourceSet>multitest.common.commonMain</sourceSet>
           <sourceSet>multitest.common.iosMain</sourceSet>
-          <sourceSet>multitest.common.commonTest</sourceSet>
         </sourceSets>
         <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
         <compilerSettings />
@@ -79,9 +79,9 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.2.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.31" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.sqldelight:runtime-iosx64:klib:1.1.3" level="project" />
-    <orderEntry type="module" module-name="multitest.common.commonTest" scope="TEST" />
     <orderEntry type="module" module-name="multitest.common.iosMain" scope="TEST" />
     <orderEntry type="module" module-name="multitest.common.commonMain" scope="TEST" />
+    <orderEntry type="module" module-name="multitest.common.commonTest" scope="TEST" />
   </component>
   <component name="TestModuleProperties" production-module="multitest.common.iosMain" />
 </module>

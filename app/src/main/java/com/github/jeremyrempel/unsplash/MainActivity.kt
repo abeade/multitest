@@ -1,10 +1,10 @@
 package com.github.jeremyrempel.unsplash
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.github.jeremyrempel.unsplash.api.PhotoResponse
+import com.github.jeremyrempel.unsplash.data.PhotoResponse
 import com.github.jeremyrempel.unsplash.presentation.PhotoActions
 import com.github.jeremyrempel.unsplash.presentation.PhotoPresenter
 import com.github.jeremyrempel.unsplash.presentation.PhotoView
@@ -39,6 +39,12 @@ class MainActivity : AppCompatActivity(), PhotoView {
 
         button.setOnClickListener {
             actions.onRequestData()
+        }
+
+        // SQLDelight usage sample
+        val db = Db.getInstance(this).playerQueries
+        db.selectAll().executeAsList().forEach {
+            log(LogLevel.DEBUG, "DB", it.toString())
         }
     }
 

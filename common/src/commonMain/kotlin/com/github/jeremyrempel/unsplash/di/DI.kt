@@ -2,7 +2,7 @@ package com.github.jeremyrempel.unsplash.di
 
 import com.github.jeremyrempel.unsplash.api.PhotoApi
 import com.github.jeremyrempel.unsplash.api.PhotoApiService
-import com.github.jeremyrempel.unsplash.api.PhotoResponse
+import com.github.jeremyrempel.unsplash.data.PhotoResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.features.ExpectSuccess
 import io.ktor.client.features.json.JsonFeature

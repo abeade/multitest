@@ -1,4 +1,4 @@
-package com.github.jeremyrempel.unsplash.api
+package com.github.jeremyrempel.unsplash.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -1,6 +1,7 @@
 package com.github.jeremyrempel.unsplash.api
 
 import com.github.jeremyrempel.unsplash.LogLevel
+import com.github.jeremyrempel.unsplash.data.PhotoResponse
 import com.github.jeremyrempel.unsplash.log
 import io.ktor.client.HttpClient
 import io.ktor.client.request.HttpRequestBuilder
