@@ -10,4 +10,3 @@ sealed class LogLevel {
 expect fun log(level: LogLevel, tag: String, message: String)
 
 expect fun log(level: LogLevel, tag: String, message: String, error: Throwable)
-

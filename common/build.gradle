@@ -1,0 +1,112 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-multiplatform'
+apply plugin: 'kotlinx-serialization'
+apply plugin: 'com.squareup.sqldelight'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+
+        //This is for MultiplatformSettings
+        debug {
+            // MPP libraries don't currently get this resolution automatically
+            matchingFallbacks = ['release']
+        }
+    }
+}
+
+kotlin {
+    targets {
+        fromPreset(presets.android, 'android')
+
+        // Change to `presets.iosArm64` to deploy the app to iPhone
+        fromPreset(presets.iosX64, 'ios') {
+            compilations.main.outputKinds('FRAMEWORK')
+            compilations.test.outputKinds("FRAMEWORK")
+        }
+    }
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${rootProject.ext.coroutinesVersion}"
+                implementation "io.ktor:ktor-client-core:${rootProject.ext.ktorVersion}"
+                implementation "io.ktor:ktor-client-json:${rootProject.ext.ktorVersion}"
+                implementation "org.kodein.di:kodein-di-core:${rootProject.ext.kodeinVersion}"
+                implementation "org.kodein.di:kodein-di-erased:${rootProject.ext.kodeinVersion}"
+                implementation "com.squareup.sqldelight:runtime:${rootProject.ext.sqldelightVersion}"
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-test-common"
+                implementation "org.jetbrains.kotlin:kotlin-test-annotations-common"
+
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${rootProject.ext.coroutinesVersion}"
+                implementation "io.ktor:ktor-client-core:${rootProject.ext.ktorVersion}"
+                implementation "io.ktor:ktor-client-json:${rootProject.ext.ktorVersion}"
+                implementation "org.kodein.di:kodein-di-core:${rootProject.ext.kodeinVersion}"
+                implementation "org.kodein.di:kodein-di-erased:${rootProject.ext.kodeinVersion}"
+                implementation "com.squareup.sqldelight:runtime:${rootProject.ext.sqldelightVersion}"
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib"
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.ext.coroutinesVersion}"
+
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${rootProject.ext.serializationVersion}"
+
+                implementation "io.ktor:ktor-client-core-jvm:${rootProject.ext.ktorVersion}"
+                implementation "io.ktor:ktor-client-json-jvm:${rootProject.ext.ktorVersion}"
+            }
+        }
+        iosMain {
+            dependencies {
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${rootProject.ext.coroutinesVersion}"
+                implementation "io.ktor:ktor-client-ios:${rootProject.ext.ktorVersion}"
+                implementation "io.ktor:ktor-client-json-native:${rootProject.ext.ktorVersion}"
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${rootProject.ext.serializationVersion}"
+                implementation "com.squareup.sqldelight:ios-driver:${rootProject.ext.sqldelightVersion}"
+            }
+        }
+    }
+}
+
+sqldelight {
+    DroidconDb {
+        packageName = "com.github.jeremyrempel.unsplash"
+    }
+}
+
+// This task attaches native framework built from ios module to Xcode project
+// (see iosApp directory). Don't run this task directly,
+// Xcode runs this task itself during its build process.
+// Before opening the project from iosApp directory in Xcode,
+// make sure all Gradle infrastructure exists (gradle.wrapper, gradlew).
+task copyFramework {
+    def buildType = project.findProperty("kotlin.build.type") ?: "DEBUG"
+    def target = project.findProperty("kotlin.target") ?: "ios"
+    dependsOn "link${buildType.toLowerCase().capitalize()}Framework${target.capitalize()}"
+
+    doLast {
+        def srcFile = kotlin.targets."$target".compilations.main.getBinary("FRAMEWORK", buildType)
+        def targetDir = getProperty("configuration.build.dir")
+        copy {
+            from srcFile.parent
+            into targetDir
+            include 'app.framework/**'
+            include 'app.framework.dSYM'
+        }
+    }
+}

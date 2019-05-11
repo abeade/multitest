@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id=":app:iosTest" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="multitest" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+<module external.linked.project.id=":common:iosTest" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="multitest" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="kotlin-language" name="Kotlin">
-      <configuration version="3" platform="Native " useProjectSettings="false" isTestModule="true" externalProjectId=":app">
+      <configuration version="3" platform="Native " useProjectSettings="false" isTestModule="true" externalProjectId=":common">
         <sourceSets>
-          <sourceSet>multitest.app.iosMain</sourceSet>
-          <sourceSet>multitest.app.commonTest</sourceSet>
-          <sourceSet>multitest.app.commonMain</sourceSet>
+          <sourceSet>multitest.common.commonMain</sourceSet>
+          <sourceSet>multitest.common.iosMain</sourceSet>
+          <sourceSet>multitest.common.commonTest</sourceSet>
         </sourceSets>
         <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
         <compilerSettings />
@@ -14,11 +14,7 @@
           <option name="languageVersion" value="1.3" />
           <option name="apiVersion" value="1.3" />
           <option name="pluginOptions">
-            <array>
-              <option value="plugin:org.jetbrains.kotlin.android:experimental=false" />
-              <option value="plugin:org.jetbrains.kotlin.android:enabled=true" />
-              <option value="plugin:org.jetbrains.kotlin.android:defaultCacheImplementation=hashMap" />
-            </array>
+            <array />
           </option>
           <option name="pluginClasspaths">
             <array>
@@ -32,9 +28,7 @@
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$/src/iosTest/kotlin">
-      <sourceFolder url="file://$MODULE_DIR$/src/iosTest/kotlin" type="kotlin-test" />
-    </content>
+    <content url="file://$MODULE_DIR$/src/iosTest/kotlin" />
     <content url="file://$MODULE_DIR$/src/iosTest/resources" />
     <orderEntry type="jdk" jdkName="Kotlin SDK" jdkType="KotlinSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -53,23 +47,18 @@
     <orderEntry type="library" scope="TEST" name="Gradle: io.ktor:ktor-utils-iosx64:klib:cinterop-utils:1.1.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: io.ktor:ktor-utils-iosx64:klib:1.1.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: io.ktor:ktor-http-iosx64:klib:1.1.5" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: io.ktor:ktor-utils:1.1.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:atomicfu-common:0.12.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: co.touchlab:sqliter-iosx64:klib:0.6.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-serialization-runtime-native_debug_ios_x64:klib:0.11.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: io.ktor:ktor-client-core-iosx64:klib:1.1.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:atomicfu-iosx64:klib:0.12.5" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.12" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-annotations-common:1.3.31" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.31" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-common:1.3.31" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:0.11.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: io.ktor:ktor-http:1.1.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-io:0.1.8" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:atomicfu:0.12.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-io:0.1.8" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: co.touchlab:stately-iosx64:klib:0.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.31" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.sqldelight:ios-driver-metadata:1.1.3" level="project" />
@@ -81,17 +70,18 @@
     <orderEntry type="library" scope="TEST" name="Gradle: io.ktor:ktor-client-json-iosx64:klib:1.1.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: io.ktor:ktor-client-ios-iosx64:klib:1.1.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-iosx64:klib:1.2.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-junit:1.3.31" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test:1.3.31" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-annotations-common:1.3.31" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-common:1.3.31" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.kodein.di:kodein-di-erased-iosx64:klib:6.2.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.kodein.di:kodein-di-core-iosx64:klib:6.2.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: io.ktor:ktor-client-json:1.1.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: io.ktor:ktor-client-core:1.1.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.31" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.sqldelight:runtime-iosx64:klib:1.1.3" level="project" />
-    <orderEntry type="module" module-name="multitest.app.commonMain" scope="TEST" />
-    <orderEntry type="module" module-name="multitest.app.commonTest" scope="TEST" />
-    <orderEntry type="module" module-name="multitest.app.iosMain" scope="TEST" />
+    <orderEntry type="module" module-name="multitest.common.commonTest" scope="TEST" />
+    <orderEntry type="module" module-name="multitest.common.iosMain" scope="TEST" />
+    <orderEntry type="module" module-name="multitest.common.commonMain" scope="TEST" />
   </component>
-  <component name="TestModuleProperties" production-module="multitest.app.iosMain" />
+  <component name="TestModuleProperties" production-module="multitest.common.iosMain" />
 </module>
