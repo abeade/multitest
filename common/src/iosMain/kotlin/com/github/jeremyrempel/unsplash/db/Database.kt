@@ -1,21 +1,21 @@
-package com.github.jeremyrempel.unsplash
+package com.github.jeremyrempel.unsplash.db
 
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.drivers.ios.NativeSqliteDriver
 import kotlin.native.concurrent.AtomicReference
 import kotlin.native.concurrent.freeze
 
-object Db {
+actual object Database : Db {
     private val driverRef = AtomicReference<SqlDriver?>(null)
     private val dbRef = AtomicReference<TestDb?>(null)
 
-    internal fun dbSetup(driver: SqlDriver) {
+    override fun dbSetup(driver: SqlDriver) {
         val db = createQueryWrapper(driver)
         driverRef.value = driver.freeze()
         dbRef.value = db.freeze()
     }
 
-    internal fun dbClear() {
+    override fun dbClear() {
         driverRef.value!!.close()
         dbRef.value = null
         driverRef.value = null
@@ -27,6 +27,9 @@ object Db {
         dbSetup(NativeSqliteDriver(Schema, "sampledb"))
     }
 
-    val instance: TestDb
+    override val ready: Boolean
+        get() = driverRef.value != null
+
+    override val instance: TestDb
         get() = dbRef.value!!
 }

@@ -92,7 +92,7 @@ kotlin {
 
 sqldelight {
     TestDb {
-        packageName = "com.github.jeremyrempel.unsplash"
+        packageName = "com.github.jeremyrempel.unsplash.db"
     }
 }
 

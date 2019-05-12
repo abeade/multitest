@@ -1,5 +1,7 @@
-package com.github.jeremyrempel.unsplash
+package com.github.jeremyrempel.unsplash.db
 
+import com.github.jeremyrempel.unsplash.Date
+import com.github.jeremyrempel.unsplash.DateAdapter
 import com.squareup.sqldelight.db.SqlDriver
 
 fun createQueryWrapper(driver: SqlDriver): TestDb {

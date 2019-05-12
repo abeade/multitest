@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.github.jeremyrempel.unsplash.data.PhotoResponse
+import com.github.jeremyrempel.unsplash.db.Database
 import com.github.jeremyrempel.unsplash.presentation.PhotoActions
 import com.github.jeremyrempel.unsplash.presentation.PhotoPresenter
 import com.github.jeremyrempel.unsplash.presentation.PhotoView
@@ -41,10 +42,10 @@ class MainActivity : AppCompatActivity(), PhotoView {
             actions.onRequestData()
         }
 
-        // SQLDelight usage sample
-        val db = Db.getInstance(this).playerQueries
+        // SQLDelight usage sample from Android code
+        val db = Database.getInstance(this).playerQueries
         db.selectAll().executeAsList().forEach {
-            log(LogLevel.DEBUG, "DB", it.toString())
+            log(LogLevel.DEBUG, "DB App", it.toString())
         }
     }
 
