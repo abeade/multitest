@@ -7,8 +7,8 @@ import com.squareup.sqldelight.db.SqlDriver
 fun createQueryWrapper(driver: SqlDriver): TestDb {
     return TestDb(
         driver = driver,
-        playerAdapter = Player.Adapter(
-            birth_dateAdapter = DateAdapter()
+        pictureAdapter = Picture.Adapter(
+            dateAdapter = DateAdapter()
         )
     )
 }
@@ -19,20 +19,8 @@ object Schema : SqlDriver.Schema by TestDb.Schema {
 
         // Seed data time!
         createQueryWrapper(driver).apply {
-            playerQueries.insertPlayer(
-                "Corey", "Perry", 10, 30, 210F, Date(1985, 5, 16)
-            )
-            playerQueries.insertPlayer(
-                "Ryan", "Getzlaf", 15, 30, 221F, Date(1985, 5, 10)
-            )
-            playerQueries.insertPlayer(
-                "Sidney", "Crosby", 87, 28, 200F, Date(1987, 8, 7)
-            )
-            playerQueries.insertPlayer(
-                "Erik", "Karlsson", 65, 28, 190F, Date(1990, 5, 31)
-            )
-            playerQueries.insertPlayer(
-                "Joe", "Pavelski", 8, 31, 194F, Date(1984, 7, 18)
+            pictureQueries.insertPicture(
+                "Hello world!", "https://cdn-images-1.medium.com/max/2600/1*0KFB17_NGTPB0XWyc4BSgQ.jpeg",  Date(1985, 5, 16)
             )
         }
     }

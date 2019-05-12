@@ -1,0 +1,25 @@
+import com.github.jeremyrempel.unsplash.Date;
+
+CREATE TABLE picture (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  description TEXT,
+  date INTEGER AS Date NOT NULL,
+  url TEXT NOT NULL
+);
+
+CREATE INDEX picture_url ON picture(url);
+
+insertPicture:
+INSERT INTO picture (description, url, date)
+VALUES (?, ?, ?);
+
+selectAll:
+SELECT *
+FROM picture;
+
+deleteContact:
+DELETE FROM picture
+WHERE id = ?;
+
+deleteAll:
+DELETE FROM picture;

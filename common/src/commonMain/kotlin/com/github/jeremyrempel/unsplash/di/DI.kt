@@ -3,6 +3,8 @@ package com.github.jeremyrempel.unsplash.di
 import com.github.jeremyrempel.unsplash.api.PhotoApi
 import com.github.jeremyrempel.unsplash.api.PhotoApiService
 import com.github.jeremyrempel.unsplash.data.PhotoResponse
+import com.github.jeremyrempel.unsplash.db.Database
+import com.github.jeremyrempel.unsplash.db.TestDb
 import io.ktor.client.HttpClient
 import io.ktor.client.features.ExpectSuccess
 import io.ktor.client.features.json.JsonFeature
@@ -37,4 +39,5 @@ val kodein = Kodein {
 
         PhotoApiService(client, apiHost, clientId)
     }
+    bind<TestDb>() with provider { Database.instance }
 }
